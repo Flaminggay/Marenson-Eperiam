@@ -1,0 +1,30 @@
+{
+ "Data": {
+  "TotalTagViews": 0,
+  "TotalQuestionViews": 0,
+  "IsHighRepEarner": false,
+  "TagViews": {
+  },
+  "CampaignViews": null,
+  "QuestionViews": null,
+  "InterestingTags": {
+  },
+  "SeenAcrossSites": null,
+  "DisplayAdPersonas": {
+  },
+  "Seniorities": [],
+  "PredictionType": "PersonalizedPredictions",
+  "TagPercents": null,
+  "Features": [{
+   "Group": -1,
+   "Order": -1,
+   "Value": 1,
+   "Feature": "QuestionTotal.OneYear",
+   "FeatureType": "SingleFeature"
+  }],
+  "Languages": []
+ },
+ "PrivacyPolicyLink": "https://stackexchange.com/legal/privacy-policy",
+ "GeneratedOn": "2023-06-01",
+ "Disclaimer": "This data is derived from your activity and various data processing algorithms.  It represents \"best guesses\" about you, and is unlikely to be completely accurate.  Use is governed by the Stack Exchange Privacy Policy."
+}

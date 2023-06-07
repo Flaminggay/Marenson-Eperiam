@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html  style="scroll-behavior: smooth;">
+
+<head>
+    <title>Host.io API Documentation - host.io</title>
+    <meta charset="utf-8">
+    <meta name="google" value="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+    <meta name="description" content="">
+
+    <link href="https://cdn.host.io/static/images/hostio/hostio-logo.svg?v2" rel="shortcut icon" type="image/svg+xml">
+    <link href="https://cdn.host.io/static/images/hostio/hostio-logo.svg?v2" rel="icon" type="image/svg+xml">
+
+    <link href="https://fonts.googleapis.com/css?family=Inter:400,500,600|IBM+Plex+Mono:400,700" rel="stylesheet">
+    
+
+    <link rel="stylesheet" href="https://cdn.host.io/static/dist/tailwind.hostio.min.css">
+
+    <!-- Google Tag Manager -->
+    <script>
+        dataLayer = [];
+    </script>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TQVZN32');</script>
+    <!-- End Google Tag Manager -->
+
+    <style>
+        #nav .active {
+            font-weight: bold;
+            color: #4299e1;
+        }
+        #nav .active::after {
+            content: "→";
+        }
+    </style>
+
+    
+
+<link rel="stylesheet" href="https://cdn.host.io/static/css/prism.css" />
+<script src="https://cdn.host.io/static/assets/prism.js"></script>
+
+<style>
+code[class*="language-"], pre[class*="language-"] {
+    font-size: .9em;
+}
+
+.code-examples a {
+    color: #24b2c6;
+}
+</style>
+
+</head>
+
+
+
+<body class="flex flex-col min-h-screen font-body">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="search" viewBox="0 0 13 13" >
+        <path d="M5.52603 9.14671C3.5298 9.14671 1.90662 7.52227 1.90662 5.52667C1.90662 3.53043 3.5298 1.90662 5.52603 1.90662C7.52227 1.90662 9.14608 3.53043 9.14608 5.52667C9.14608 7.52227 7.52227 9.14671 5.52603 9.14671ZM10.0682 8.7209L9.91889 8.87025C10.6269 7.94173 11.0527 6.78504 11.0527 5.52667C11.0527 2.4748 8.57854 0 5.52603 0C2.47416 0 0 2.4748 0 5.52667C0 8.57854 2.47416 11.0533 5.52603 11.0533C6.7844 11.0533 7.94109 10.6275 8.87025 9.91953L8.72026 10.0689L11.652 13L13 11.652L10.0682 8.7209Z" />            
+    </symbol>
+
+    <symbol id="domains" viewBox="0 0 48 46">
+        <path d="M44 0H4C1.79093 0 0 1.79093 0 4V41.3333C0 43.5424 1.79093 45.3333 4 45.3333H44C46.2091 45.3333 48 43.5424 48 41.3333V4C48 1.79093 46.2091 0 44 0ZM38.6667 33C38.6667 34.6569 37.3235 36 35.6667 36H12.3333C10.6765 36 9.33333 34.6569 9.33333 33V20.3333C9.33333 18.6765 10.6765 17.3333 12.3333 17.3333H16C16.7364 17.3333 17.3333 16.7364 17.3333 16C17.3333 15.2636 17.9303 14.6667 18.6667 14.6667C19.403 14.6667 20 14.0697 20 13.3333V12C20 10.5272 21.1939 9.33333 22.6667 9.33333H25.3333C26.8061 9.33333 28 10.5272 28 12V13.3333C28 14.0697 28.597 14.6667 29.3333 14.6667C30.0697 14.6667 30.6667 15.2636 30.6667 16C30.6667 16.7364 31.2636 17.3333 32 17.3333H35.6667C37.3235 17.3333 38.6667 18.6765 38.6667 20.3333V33Z" fill="#ffffff"/>
+    </symbol>
+
+    <symbol id="github" viewBox="0 0 24 24">
+        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+    </symbol>
+
+    <symbol id="github-white" viewBox="0 0 24 24">
+        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" fill="#ffffff" />
+    </symbol>
+
+    <symbol id="google" viewBox="0 0 24 24">
+        <path d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.345-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z"/>
+    </symbol>
+
+    <symbol id="website" viewBox="0 0 50 46">
+        <path d="M47.5 0H2.5C1 0 0 1 0 2.5V43.5C0 44.75 1 46 2.5 46H47.5C48.75 46 50 44.75 50 43.5V2.5C50 1 48.75 0 47.5 0ZM17.5 5C19 5 20 6 20 7.5C20 9 19 10 17.5 10C16 10 15 8.75 15 7.5C15 6 16 5 17.5 5ZM7.5 5C9 5 10 6 10 7.5C10 9 9 10 7.5 10C6 10 5 8.75 5 7.5C5 6 6 5 7.5 5ZM45 41H5V15H45V41Z" fill="#ffffff"/>
+    </symbol>
+
+    <symbol id="tld" viewBox="0 0 52 48">
+        <path d="M38.6952 18.3924C39.0356 20.4982 39.2162 22.7162 39.2162 25.0023C39.2162 27.2866 39.0358 29.5031 38.6958 31.6075H44.5711C45.2721 29.5327 45.6522 27.3104 45.6522 25C45.6522 22.6896 45.2721 20.4673 44.5711 18.3924H38.6952ZM35.3866 18.3924H26.6304V31.6075H35.3872C35.7544 29.5357 35.9554 27.3164 35.9554 25.0023C35.9554 22.6864 35.7542 20.4656 35.3866 18.3924ZM34.3439 43.4198C38.0699 41.5245 41.1453 38.5319 43.1434 34.8684H38.0198C37.1771 38.1665 35.9193 41.0857 34.3439 43.4198ZM27.3303 45.5219C30.4183 44.1747 33.1177 40.2264 34.6408 34.8684H26.6304V45.5886C26.8648 45.5703 27.0981 45.5481 27.3303 45.5219ZM34.3401 6.57825C35.9167 8.91223 37.1755 11.8322 38.0189 15.1316H43.1434C41.1446 11.4669 38.0677 8.47339 34.3401 6.57825ZM27.3165 4.47651C27.0889 4.45107 26.8602 4.42933 26.6304 4.41135V15.1316H34.6398C33.1143 9.76749 30.4097 5.81749 27.3165 4.47651ZM11.3034 18.3924H5.42894C4.72792 20.4673 4.34783 22.6896 4.34783 25C4.34783 27.3104 4.72792 29.5327 5.42894 31.6075H11.3035C10.9633 29.5024 10.7827 27.2851 10.7827 25C10.7827 22.7148 10.9633 20.4975 11.3034 18.3924ZM14.612 18.3924C14.2447 20.4649 14.0436 22.685 14.0436 25C14.0436 27.3149 14.2448 29.535 14.6122 31.6075H23.3696V18.3924H14.612ZM15.6569 43.4202C14.0811 41.0863 12.8228 38.1668 11.9797 34.8684H6.85658C8.85487 38.5321 11.9306 41.525 15.6569 43.4202ZM22.6755 45.5226C22.9057 45.5484 23.1371 45.5705 23.3696 45.5886V34.8684H15.3589C16.8832 40.2291 19.5851 44.1783 22.6755 45.5226ZM15.656 6.58023C11.9301 8.47547 8.85472 11.4682 6.85658 15.1316H11.9795C12.8224 11.8333 14.0804 8.91404 15.656 6.58023ZM22.675 4.47746C19.5845 5.82174 16.8827 9.77063 15.3586 15.1316H23.3696V4.41135C23.1369 4.42955 22.9054 4.45161 22.675 4.47746ZM50 25C50 38.8006 38.8006 50 25 50C11.1994 50 0 38.8006 0 25C0 11.1994 11.1994 0 25 0C38.8006 0 50 11.1994 50 25Z"/>
+    </symbol>
+
+    <symbol id="dns" viewBox="0 0 38 29">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.49823 0H36.0685C36.9008 0 37.5667 0.675389 37.5667 1.51963V11.8756C37.5667 12.7198 36.9008 13.3952 36.0685 13.3952H1.49823C0.665879 13.3952 0 12.7198 0 11.8756V1.51963C0 0.675389 0.665879 0 1.49823 0ZM1.49823 15.534H36.0685C36.9008 15.534 37.5667 16.2093 37.5667 17.0536V27.4096C37.5667 28.2538 36.9008 28.9292 36.0685 28.9292H1.49823C0.665879 28.9292 0 28.2538 0 27.4096V17.0536C0 16.2093 0.665879 15.534 1.49823 15.534ZM8.268 18.2355C10.4321 18.2355 12.2078 20.0366 12.2078 22.2316C12.2078 24.4266 10.4321 26.2276 8.268 26.2276C6.1039 26.2276 4.32822 24.4266 4.32822 22.2316C4.32822 20.0366 6.1039 18.2355 8.268 18.2355ZM8.268 2.70156C10.4321 2.70156 12.2078 4.5026 12.2078 6.69761C12.2078 8.89263 10.4321 10.6937 8.268 10.6937C6.1039 10.6937 4.32822 8.89263 4.32822 6.69761C4.32822 4.5026 6.1039 2.70156 8.268 2.70156Z" />
+    </symbol>
+
+    <symbol id="backlinks" viewBox="0 0 33 34">
+        <path d="M28.2159 1.24506C26.022 -0.0130981 23.4754 -0.329943 21.0459 0.350328C18.6164 1.03106 16.5937 2.6282 15.3512 4.84842L14.4057 6.53825C14.3406 6.65355 14.2936 6.77439 14.2572 6.89661C15.4191 7.05941 16.5514 7.39286 17.6153 7.89787L18.3575 6.57238C19.1454 5.1648 20.4275 4.152 21.9681 3.72078C23.5077 3.28817 25.1225 3.49064 26.5131 4.28806C29.3837 5.935 30.3957 9.63798 28.7695 12.5435L25.5549 18.285C24.7671 19.6926 23.4854 20.7059 21.9453 21.1366C20.4043 21.5688 18.7899 21.3663 17.3993 20.5698C15.4979 19.4786 14.3488 17.4295 14.367 15.2453C13.5391 14.814 12.5617 14.7057 11.6595 14.957C11.3975 15.0299 11.1492 15.1327 10.9141 15.2577C10.9004 18.6867 12.7089 21.8981 15.6961 23.6124C17.2435 24.4988 18.9654 24.9185 20.6982 24.8507C21.4227 24.8221 22.1499 24.7086 22.8662 24.5075C25.2961 23.8273 27.3183 22.2301 28.5613 20.0099L31.7763 14.268C34.3402 9.68456 32.7436 3.843 28.2159 1.24506ZM14.649 27.3306C13.8612 28.7386 12.579 29.7514 11.0385 30.1831C9.49796 30.6138 7.88406 30.4123 6.49343 29.6144C5.10189 28.817 4.10129 27.5192 3.67572 25.9599C3.24969 24.401 3.44835 22.7674 4.23662 21.3603L7.4512 15.6179C8.23901 14.2103 9.52074 13.1975 11.0608 12.7663C12.6014 12.3346 14.2157 12.5366 15.6054 13.334C17.5078 14.4248 18.656 16.4739 18.6378 18.6591C19.467 19.0907 20.4458 19.1991 21.3466 18.9464C21.6081 18.8735 21.856 18.7702 22.0916 18.6457C22.1048 15.2162 20.2963 12.0049 17.3091 10.292C15.1161 9.03381 12.5686 8.71604 10.14 9.39631C7.71046 10.077 5.68785 11.6746 4.44531 13.8949L1.23072 19.6368C-0.0122788 21.857 -0.326219 24.4342 0.345859 26.8933C1.01794 29.3525 2.59629 31.3997 4.78977 32.6574C6.33715 33.5443 8.05858 33.9645 9.7914 33.8971C10.5163 33.8681 11.2431 33.7542 11.9594 33.554C14.3893 32.8733 16.4115 31.2761 17.6545 29.0559L18.5999 27.3656C18.6642 27.2521 18.7111 27.1336 18.7471 27.0128C17.5902 26.85 16.458 26.5147 15.3899 26.0064L14.649 27.3306Z" />
+    </symbol>
+
+    <symbol id="redirects" viewBox="0 0 35 34">
+        <path d="M34.4663 18.1506L29.1194 13.9315C28.6386 13.5503 27.9715 13.5503 27.4893 13.9315L22.1425 18.1506C21.5509 18.6206 21.4348 19.5024 21.8859 20.1184C22.3343 20.7344 23.1811 20.8582 23.7753 20.3884L26.9531 17.8809V26.3233C26.9531 28.6382 25.1323 30.5188 22.9015 30.5188C20.6677 30.5188 18.8498 28.6146 18.8498 26.2758V7.00933C18.8498 3.14463 15.8192 0 12.0971 0C8.37496 0 5.34432 3.16432 5.34432 7.05574V15.0369L2.16512 12.5265C1.57088 12.0568 0.724079 12.1791 0.274346 12.7979C-0.175388 13.4139 -0.0605912 14.2957 0.533652 14.7654L5.87914 18.9845C6.12088 19.1776 6.40855 19.2714 6.69487 19.2714C6.98119 19.2714 7.26885 19.18 7.5106 18.9856L12.8561 14.7665C13.4517 14.2968 13.5678 13.415 13.1167 12.799C12.667 12.1802 11.8202 12.0564 11.2246 12.5276L8.04542 15.0351V7.05398C8.04542 4.71519 9.86326 2.81097 12.0971 2.81097C14.3309 2.81097 16.1487 4.6955 16.1487 7.00757V26.2776C16.1487 30.169 19.178 33.3333 22.9015 33.3333C26.6233 33.3333 29.6543 30.1887 29.6543 26.3237V17.8833L32.8335 20.3909C33.0806 20.5839 33.3656 20.6767 33.6492 20.6767C34.0597 20.6767 34.4636 20.4823 34.7279 20.1198C35.1753 19.5021 35.0592 18.6206 34.4663 18.1506Z"/>
+    </symbol>
+
+    <symbol id="logo" viewBox="0 0 107.051 25.771">
+        <g id="Group_7" data-name="Group 7" transform="translate(-72 168.771)">
+            <path id="Union_2" data-name="Union 2" fill="#231f1f" d="M61.747,11.008a6.794,6.794,0,1,1,6.8,6.459A6.481,6.481,0,0,1,61.747,11.008Zm3.114,0a3.669,3.669,0,1,0,7.33,0,3.669,3.669,0,1,0-7.33,0ZM28.9,15.652,30.3,13.5a5.161,5.161,0,0,0,3.363,1.355c.869,0,1.62-.388,1.62-1.113,0-1.839-6-1.593-6-5.564,0-2.3,2.056-3.628,4.717-3.628a5.913,5.913,0,0,1,4.136,1.4L37,8.225A4.689,4.689,0,0,0,33.98,7.161c-.8,0-1.572.339-1.572,1.112,0,1.737,6,1.525,6,5.493,0,2.056-1.791,3.7-4.718,3.7A6.9,6.9,0,0,1,28.9,15.652ZM13.912,11.008a6.478,6.478,0,0,1,6.767-6.459,6.467,6.467,0,1,1,.03,12.917A6.479,6.479,0,0,1,13.912,11.008Zm3.114,0a3.669,3.669,0,1,0,7.33,0,3.669,3.669,0,1,0-7.33,0ZM46.53,17.3c-1.717,0-5.128-.507-5.128-4.644V7.475H39.81V5.031h1.668V1.475h3V5.031H47.28V7.475H44.475v4.789a2.194,2.194,0,0,0,2.444,2.324,2.86,2.86,0,0,0,.556-.048v2.684a5.3,5.3,0,0,1-.876.073Zm9.673-.12V4.839h3.072V17.177Zm-6.337,0V14.1H52.94v3.074Zm-41.3,0V9.87c0-1.5-.388-2.516-1.96-2.516A3.472,3.472,0,0,0,3.266,9.919a5.568,5.568,0,0,0-.193,1.593v5.661H0V0H3.074V5.952a10.259,10.259,0,0,1-.049,1.04h.049A4.75,4.75,0,0,1,7.33,4.549c2.735,0,4.282,1.426,4.282,4.692v7.935ZM56.2,2.733V0h3.04V2.733Z" transform="translate(103.733 -164.619)"/>
+            <path id="Union_1" data-name="Union 1" fill="#00aeef" d="M11.969,25.771a2.027,2.027,0,0,1-2.027-2.027v-7a2.027,2.027,0,0,1,2.027-2.027h1.3A2.027,2.027,0,0,1,15.3,16.747v3.667h2.677a1.907,1.907,0,0,0,1.908-1.907V2.027A2.027,2.027,0,0,1,21.911,0h1.3a2.027,2.027,0,0,1,2.027,2.027V18.942a6.829,6.829,0,0,1-6.829,6.829Zm-9.942,0A2.027,2.027,0,0,1,0,23.744V6.829A6.829,6.829,0,0,1,6.829,0h6.443A2.027,2.027,0,0,1,15.3,2.027v7a2.027,2.027,0,0,1-2.027,2.027h-1.3A2.027,2.027,0,0,1,9.942,9.024V5.357H7.259a1.907,1.907,0,0,0-1.9,1.907v16.48A2.027,2.027,0,0,1,3.33,25.771Z" transform="translate(72 -168.771)"/>
+        </g>
+    </symbol>
+
+    <symbol id="logo-sm-orange">
+        <defs>
+            <style>
+        
+            .cls-2 {
+                fill: #f35929;
+            }
+            </style>
+        </defs>
+        <g id="Group_7" data-name="Group 7" transform="translate(-72 168.771)">
+            <path id="Union_1" data-name="Union 1" class="cls-2" d="M11.969,25.771a2.027,2.027,0,0,1-2.027-2.027v-7a2.027,2.027,0,0,1,2.027-2.027h1.3A2.027,2.027,0,0,1,15.3,16.747v3.667h2.677a1.907,1.907,0,0,0,1.908-1.907V2.027A2.027,2.027,0,0,1,21.911,0h1.3a2.027,2.027,0,0,1,2.027,2.027V18.942a6.829,6.829,0,0,1-6.829,6.829Zm-9.942,0A2.027,2.027,0,0,1,0,23.744V6.829A6.829,6.829,0,0,1,6.829,0h6.443A2.027,2.027,0,0,1,15.3,2.027v7a2.027,2.027,0,0,1-2.027,2.027h-1.3A2.027,2.027,0,0,1,9.942,9.024V5.357H7.259a1.907,1.907,0,0,0-1.9,1.907v16.48A2.027,2.027,0,0,1,3.33,25.771Z" transform="translate(72 -168.771)"/>
+        </g>
+    </symbol>
+
+    <symbol id="logo-sm">
+        <g id="Group_7" data-name="Group 7" transform="translate(-72 168.771)">
+            <path id="Union_1" data-name="Union 1" fill="#24B2C6" d="M11.969,25.771a2.027,2.027,0,0,1-2.027-2.027v-7a2.027,2.027,0,0,1,2.027-2.027h1.3A2.027,2.027,0,0,1,15.3,16.747v3.667h2.677a1.907,1.907,0,0,0,1.908-1.907V2.027A2.027,2.027,0,0,1,21.911,0h1.3a2.027,2.027,0,0,1,2.027,2.027V18.942a6.829,6.829,0,0,1-6.829,6.829Zm-9.942,0A2.027,2.027,0,0,1,0,23.744V6.829A6.829,6.829,0,0,1,6.829,0h6.443A2.027,2.027,0,0,1,15.3,2.027v7a2.027,2.027,0,0,1-2.027,2.027h-1.3A2.027,2.027,0,0,1,9.942,9.024V5.357H7.259a1.907,1.907,0,0,0-1.9,1.907v16.48A2.027,2.027,0,0,1,3.33,25.771Z" transform="translate(72 -168.771)"/>
+        </g>
+    </symbol>
+
+
+    <symbol id="menu-toggle">
+        <g>
+        <path d="M1 6L7 2L13 6" stroke="white" stroke-width="2" stroke-linecap="round" fill="none" />
+    </g>
+    </symbol>
+
+    <symbol id="logo-white" viewBox="0 0 107.051 25.771">
+        <defs>
+            <style>
+            .cls-1 {
+                fill: #ffffff;
+            }
+        
+            .cls-2 {
+                fill: #ffffff;
+            }
+            </style>
+        </defs>
+        <g id="Group_7" data-name="Group 7" transform="translate(-72 168.771)">
+            <path id="Union_2" data-name="Union 2" class="cls-1" d="M61.747,11.008a6.794,6.794,0,1,1,6.8,6.459A6.481,6.481,0,0,1,61.747,11.008Zm3.114,0a3.669,3.669,0,1,0,7.33,0,3.669,3.669,0,1,0-7.33,0ZM28.9,15.652,30.3,13.5a5.161,5.161,0,0,0,3.363,1.355c.869,0,1.62-.388,1.62-1.113,0-1.839-6-1.593-6-5.564,0-2.3,2.056-3.628,4.717-3.628a5.913,5.913,0,0,1,4.136,1.4L37,8.225A4.689,4.689,0,0,0,33.98,7.161c-.8,0-1.572.339-1.572,1.112,0,1.737,6,1.525,6,5.493,0,2.056-1.791,3.7-4.718,3.7A6.9,6.9,0,0,1,28.9,15.652ZM13.912,11.008a6.478,6.478,0,0,1,6.767-6.459,6.467,6.467,0,1,1,.03,12.917A6.479,6.479,0,0,1,13.912,11.008Zm3.114,0a3.669,3.669,0,1,0,7.33,0,3.669,3.669,0,1,0-7.33,0ZM46.53,17.3c-1.717,0-5.128-.507-5.128-4.644V7.475H39.81V5.031h1.668V1.475h3V5.031H47.28V7.475H44.475v4.789a2.194,2.194,0,0,0,2.444,2.324,2.86,2.86,0,0,0,.556-.048v2.684a5.3,5.3,0,0,1-.876.073Zm9.673-.12V4.839h3.072V17.177Zm-6.337,0V14.1H52.94v3.074Zm-41.3,0V9.87c0-1.5-.388-2.516-1.96-2.516A3.472,3.472,0,0,0,3.266,9.919a5.568,5.568,0,0,0-.193,1.593v5.661H0V0H3.074V5.952a10.259,10.259,0,0,1-.049,1.04h.049A4.75,4.75,0,0,1,7.33,4.549c2.735,0,4.282,1.426,4.282,4.692v7.935ZM56.2,2.733V0h3.04V2.733Z" transform="translate(103.733 -164.619)"/>
+            <path id="Union_1" data-name="Union 1" class="cls-2" d="M11.969,25.771a2.027,2.027,0,0,1-2.027-2.027v-7a2.027,2.027,0,0,1,2.027-2.027h1.3A2.027,2.027,0,0,1,15.3,16.747v3.667h2.677a1.907,1.907,0,0,0,1.908-1.907V2.027A2.027,2.027,0,0,1,21.911,0h1.3a2.027,2.027,0,0,1,2.027,2.027V18.942a6.829,6.829,0,0,1-6.829,6.829Zm-9.942,0A2.027,2.027,0,0,1,0,23.744V6.829A6.829,6.829,0,0,1,6.829,0h6.443A2.027,2.027,0,0,1,15.3,2.027v7a2.027,2.027,0,0,1-2.027,2.027h-1.3A2.027,2.027,0,0,1,9.942,9.024V5.357H7.259a1.907,1.907,0,0,0-1.9,1.907v16.48A2.027,2.027,0,0,1,3.33,25.771Z" transform="translate(72 -168.771)"/>
+        </g>
+    </symbol>
+
+    <symbol id="logo-orange" viewBox="0 0 107.051 25.771">
+        <defs>
+            <style>
+            .cls-1 {
+                fill: #F35928;
+            }
+        
+            .cls-2 {
+                fill: #F35928;
+            }
+            </style>
+        </defs>
+        <g id="Group_7" data-name="Group 7" transform="translate(-72 168.771)">
+            <path id="Union_2" data-name="Union 2" class="cls-1" d="M61.747,11.008a6.794,6.794,0,1,1,6.8,6.459A6.481,6.481,0,0,1,61.747,11.008Zm3.114,0a3.669,3.669,0,1,0,7.33,0,3.669,3.669,0,1,0-7.33,0ZM28.9,15.652,30.3,13.5a5.161,5.161,0,0,0,3.363,1.355c.869,0,1.62-.388,1.62-1.113,0-1.839-6-1.593-6-5.564,0-2.3,2.056-3.628,4.717-3.628a5.913,5.913,0,0,1,4.136,1.4L37,8.225A4.689,4.689,0,0,0,33.98,7.161c-.8,0-1.572.339-1.572,1.112,0,1.737,6,1.525,6,5.493,0,2.056-1.791,3.7-4.718,3.7A6.9,6.9,0,0,1,28.9,15.652ZM13.912,11.008a6.478,6.478,0,0,1,6.767-6.459,6.467,6.467,0,1,1,.03,12.917A6.479,6.479,0,0,1,13.912,11.008Zm3.114,0a3.669,3.669,0,1,0,7.33,0,3.669,3.669,0,1,0-7.33,0ZM46.53,17.3c-1.717,0-5.128-.507-5.128-4.644V7.475H39.81V5.031h1.668V1.475h3V5.031H47.28V7.475H44.475v4.789a2.194,2.194,0,0,0,2.444,2.324,2.86,2.86,0,0,0,.556-.048v2.684a5.3,5.3,0,0,1-.876.073Zm9.673-.12V4.839h3.072V17.177Zm-6.337,0V14.1H52.94v3.074Zm-41.3,0V9.87c0-1.5-.388-2.516-1.96-2.516A3.472,3.472,0,0,0,3.266,9.919a5.568,5.568,0,0,0-.193,1.593v5.661H0V0H3.074V5.952a10.259,10.259,0,0,1-.049,1.04h.049A4.75,4.75,0,0,1,7.33,4.549c2.735,0,4.282,1.426,4.282,4.692v7.935ZM56.2,2.733V0h3.04V2.733Z" transform="translate(103.733 -164.619)"/>
+            <path id="Union_1" data-name="Union 1" class="cls-2" d="M11.969,25.771a2.027,2.027,0,0,1-2.027-2.027v-7a2.027,2.027,0,0,1,2.027-2.027h1.3A2.027,2.027,0,0,1,15.3,16.747v3.667h2.677a1.907,1.907,0,0,0,1.908-1.907V2.027A2.027,2.027,0,0,1,21.911,0h1.3a2.027,2.027,0,0,1,2.027,2.027V18.942a6.829,6.829,0,0,1-6.829,6.829Zm-9.942,0A2.027,2.027,0,0,1,0,23.744V6.829A6.829,6.829,0,0,1,6.829,0h6.443A2.027,2.027,0,0,1,15.3,2.027v7a2.027,2.027,0,0,1-2.027,2.027h-1.3A2.027,2.027,0,0,1,9.942,9.024V5.357H7.259a1.907,1.907,0,0,0-1.9,1.907v16.48A2.027,2.027,0,0,1,3.33,25.771Z" transform="translate(72 -168.771)"/>
+        </g>
+    </symbol>
+</svg>
+    <header>
+        <nav class="py-4 
+bg-gray-100 border-b
+">
+            <div class="flex items-center justify-between max-w-5xl mx-auto px-4">
+                <div class="flex items-center">
+                    <a href="/" class="sm:block hidden">
+                        <svg class="w-24 h-8">
+                            <use xlink:href="#logo-orange" />
+                        </svg>
+                    </a>
+                    <a href="/" class="sm:hidden">
+                        <svg class="w-8 h-8">
+                            <use xlink:href="#logo-sm-orange" />
+                        </svg>
+                    </a>
+                    
+                        <form class="ml-8 hidden sm:block" action="/search" method="get"
+                            x-cloak x-data='{expand: false}'>
+                            <input
+                                @focus='expand = true'
+                                @blur='expand = false'
+                                :style="`width: ${expand ? '300px' : '150px'}`"
+                                class="px-4 py-2 border border-gray-300 rounded text-sm transition-all duration-300" 
+                                name="domain"
+                                type="text"
+                                placeholder="Search a domain (i.e. facebook.com)">
+                        </form>
+                    
+                </div>
+
+                <div class="flex lg:w-3/4 justify-end">
+                    <div class="flex justify-end lg:block hidden text-gray-600 text-sm">
+                        <a class="
+    
+" href="/about">About</a>
+                        <a class="ml-6 
+     font-semibold text-secondary-600 
+" href="/docs">Docs</a>
+                        <a class="ml-6 
+    
+" href="/faq">FAQ</a>
+                        <a class="ml-6 
+    
+" href="/rankings">Rankings</a>
+                        <a class="ml-6 
+    
+" href="/pricing">Pricing</a>
+                    </div>
+                    <div class="flex">
+                        
+                        <span class="ml-6">
+                            <a
+                                class="btn btn-secondary-hollow"
+                                href="/login">Login</a>
+                        </span>
+                        <span class="ml-4">
+                            <a
+                                class="btn btn-secondary"
+                                href="/signup">Sign up</a>
+                        </span>
+                        
+
+                        <div x-data="{ open: false }" class="relative" x-cloak>
+                            <a class="lg:hidden bg-secondary-600 flex items-center p-2 rounded ml-2 -mt-1 opacity-50" @click="open = true">
+                                <svg class="w-4 h-3 mt-1">
+                                    <use xlink:href="#menu-toggle" />
+                                </svg>
+                            </a>
+                            <div x-show="open" @click.away="open = false"
+                                class="absolute bg-white -ml-20 rounded text-sm mt-2 text-gray-700 font-medium text-center border">
+                                <div class="px-3 py-2 border-b"><a href="/about">About</a></div>
+                                <div class="px-3 py-2 border-b"><a href="/docs">Documentation</a></div>
+                                <div class="px-3 py-2 border-b"><a href="/faq">FAQ</a></div>
+                                <div class="px-3 py-2 border-b"><a href="/pricing">Pricing</a></div>
+                                <div class="px-3 py-2"><a href="/rankings">Rankings</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    
+<div>
+    <div class="mx-auto max-w-5xl py-8 px-4">
+        <div class="tracking-widest uppercase text-gray-500 text-xs">
+            How to use host.io
+        </div>
+        <div class="text-2xl font-medium">
+            Documentation
+        </div>
+    </div>
+</div>
+<div class="bg-gray-100 border-t border-gray-200">
+    <div class="flex justify-between mx-auto max-w-5xl px-4">
+        <div class="w-1/3 hidden lg:block">
+            <div class="pt-4 sticky top-0">
+                <div class="tracking-widest text-xs text-gray-500 uppercase">Navigation</div>
+                <ul class="text-gray-700 text-sm" id="nav">
+                    <li class="cursor-pointer hover:text-gray-900 mt-1">
+                        <a href="#authentication">Authentication</a>
+                    </li>
+                    <li class="cursor-pointer hover:text-gray-900 mt-1">
+                        <a href="#pagination">Pagination and Limits</a>
+                    </li>
+                    <li class="cursor-pointer hover:text-gray-900 mt-1">
+                        <a href="#apiwebdomain">/api</a>
+                    </li>
+                    <ul class="ml-4">
+                        <li class="cursor-pointer hover:text-gray-900 mt-1">
+                            <a href="#apiwebdomain">/api/web/:domain</a>
+                        </li>
+                        <li class="cursor-pointer hover:text-gray-900 mt-1">
+                            <a href="#apidnsdomain">/api/dns/:domain</a>
+                        </li>
+                        <li class="cursor-pointer hover:text-gray-900 mt-1">
+                            <a href="#apirelateddomain">/api/related/:domain</a>
+                        </li>
+                        <li class="cursor-pointer hover:text-gray-900 mt-1">
+                            <a href="#apifulldomain">/api/full/:domain</a>
+                        </li>
+                        <li class="cursor-pointer hover:text-gray-900 mt-1">
+                            <a href="#apidomainsfieldvalue">/api/domains/:field/:value</a>
+                        </li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+        <div class="w-full lg:w-3/4 text-gray-700 py-4 code-examples">
+            <div class="text-gray-700">
+                <div class="border bg-white rounded mb-12">
+                    <h3 class="px-6 py-4 text-primary border-b text-xl" id="authentication">
+                        <strong>Authentication</strong>
+                    </h3>
+                    <div class="px-6 py-4">
+                        <p>Your API token is used to authenticate you with our API, and can be provided either as an HTTP Basic Auth username, a bearer token, or alternatively as a token URL parameter.</p>
+                        <p class="mt-4">If no token is provided, you will receive an error message response with an HTTP 400 status code.</p>
+                        <h5 class="mt-4 font-semibold mb-1" id="_basic-auth_" class="mt-4">Basic Auth</h5>
+                        <pre class="rounded"><code class="language-bash">curl -u $TOKEN: https://host.io
+</code></pre>
+                        <h5 class="mt-4 font-semibold mb-1" id="_bearer-token_" class="mt-4">Bearer Token</h5>
+                        <pre class="rounded"><code class="language-bash">curl -H "Authorization: Bearer $TOKEN" https://host.io
+</code></pre>
+                        <h5 class="mt-4 font-semibold mb-1" id="_query-parameter_" class="mt-4">Query Parameter</h5>
+                        <pre class="rounded"><code class="language-bash">curl "https://host.io?token=$TOKEN"
+</code></pre>
+                    </div>
+                </div>
+
+                <div class="border bg-white rounded mb-12">
+                    <h3 class="px-6 py-4 text-primary border-b text-xl" id="pagination">
+                        <strong>Pagination and Limits</strong>
+                    </h3>
+                    <div class="px-6 py-4">
+                        <p>
+                            API endpoints that return a list of domains (for eg,
+                            /api/domains/ip/:domain which returns a list of domains on a particular IP)
+                            can be paginated by using query parameters 'page' and 'limit'. 
+                        </p>
+
+                        <p class="mt-4">The following code will return 50 domains for the IP 8.8.8.8 starting from 250th.</p>
+                        
+
+                        <pre class="rounded mt-4"><code class="language-bash">curl "https://host.io/api/domains/ip/8.8.8.8?limit=50&page=5&token=$TOKEN"</code></pre>
+
+                        <p class="mt-4">The max limit is 1000.</p>
+
+                        <p class="mt-4">
+                            It's important to note that the <span class="font-bold">maximum number of domains you can request is subject to your plan</span>.
+                            For example, with free plan you can request maximum of 5 domains per page. Please check <a href="/pricing">pricing page</a> to see how many
+                            domains you can request per API call.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border bg-white rounded mb-12">
+                <h3 class="px-6 py-4 text-primary border-b text-xl" id="apiwebdomain"><strong>/api/web/:domain</strong></h3>
+                <div class="px-6 py-4">
+                    <h5 class="font-bold">Description</h5>
+                    <p>Metadata scraped from a domain homepage.</p>
+                    <h5 class="mt-4 font-bold" id="errors">Errors</h5>
+                    <p>Returns the HTTP 404 status code as well as an error message in JSON format if the domain is invalid and/or has no data associated with it.</p>
+                    <h5 class="mt-4 font-bold" id="examples">Examples</h5>
+                    <h6 class="mt-2"><em>Good</em></h6>
+                    <pre class="rounded">
+<code class="language-bash">curl "https://host.io/api/web/facebook.com?token=$TOKEN"
+{
+    "domain": "facebook.com",
+
+    # Position in host.io 10M domains ranking, https://host.io/rankings
+    "rank": 2,
+    
+    # URL we scraped the data from
+    "url": "https://www.facebook.com/",
+
+    # Actual IP we scraped the data from
+    "ip": "157.240.11.35",
+    
+    # Date we scraped the data
+    "date": "2020-08-26T17:39:17.981Z",
+
+    # Length of the HTML content we scraped
+    "length": 160817,
+    
+    # Encoding of the scraped data
+    "encoding": "utf8",
+
+    # Scraped copyright notice
+    "copyright": "Facebook © 2020",
+
+    # HTML title
+    "title": "Facebook - Log In or Sign Up",
+
+    # HTML meta description
+    "description": "Create an account or log into Facebook. Connect with friends, family and other people you know. Share photos and videos, send messages and get updates.",
+    
+    # Domains of links on the homepage
+    "links": [
+        "messenger.com",
+        "oculus.com"
+    ]
+}
+</code></pre>
+                <h6 id="_bad_" class="mt-4"><em>Bad</em></h6>
+<pre class="rounded"><code class="language-bash">curl "https://host.io/api/web/example.example?token=$TOKEN"
+{
+  "error": "No details found for example.example"
+}
+</code></pre>
+                </div></div><div class="border bg-white rounded mb-12">
+                <h3 class="px-6 py-4 text-primary border-b text-xl" id="apidnsdomain"><strong>/api/dns/:domain</strong></h3>
+                <div class="px-6 py-4"><h5><strong>Description</strong></h5>
+                <p>Get all the DNS records stored for a domain.</p>
+                <p class="mt-2">Currently supported records are:</p>
+                <ul class="list-disc ml-8">
+                    <li>A (IPv4 address)</li>
+                    <li>AAAA (IPv6 address)</li>
+                    <li>MX (mailserver)</li>
+                    <li>NS (nameserver)</li>
+                </ul>
+                <h5 class="mt-4" id="errors"><strong>Errors</strong></h5>
+                <p>Returns the HTTP 404 status code as well as an error message in JSON format if the domain is invalid and/or has no data associated with it.</p>
+                <h5 class="mt-4" id="examples"><strong>Examples</strong></h5>
+                <h6 class="mt-2"><em>Good</em></h6>
+<pre class="rounded"><code class="language-bash">curl "https://host.io/api/dns/facebook.com?token=$TOKEN"
+{
+    "domain": "facebook.com",
+    "a": [
+        "157.240.3.35"
+    ],
+    "aaaa": [
+        "2a03:2880:f101:83:face:b00c:0:25de"
+    ],
+    "mx": [
+        "10 smtpin.vvv.facebook.com."
+    ],
+    "ns": [
+        "a.ns.facebook.com.",
+        "b.ns.facebook.com."
+    ]
+}
+</code></pre>
+                <h6 id="_bad_" class="mt-4"><em>Bad</em></h6>
+<pre class="rounded"><code class="language-bash">curl "https://host.io/api/dns/example.example?token=$TOKEN"
+{
+    "error": "No details found for example.example"
+}
+</code></pre>
+                </div>
+                </div></div><div class="border bg-white rounded mb-12">
+                <h3 class="px-6 py-4 text-primary border-b text-xl" id="apirelateddomain"><strong>/api/related/:domain</strong></h3>
+                <div class="px-6 py-4"><h5><strong>Description</strong></h5>
+                <p>Get a count of the number of related domains for all supported lookups we offer. See <a href="#apidomainsfieldvalue"><code>/api/domains/:field</code></a> for a full list of fields, and details on how to get the list of related domains.</p>
+                <h5 class="mt-4" id="errors"><strong>Errors</strong></h5>
+                <p>Returns the HTTP 404 status code as well as an error message in JSON format if the domain is invalid and/or has no data associated with it.</p>
+                <h5 class="mt-4" id="examples"><strong>Examples</strong></h5>
+<pre class="rounded"><code class="language-bash">curl "https://host.io/api/related/google.com?token=$TOKEN"
+{
+    "ip": [
+        {
+            "value": "172.217.14.238",
+            "count": 293
+        },
+        {
+            "value": "216.58.193.68",
+            "count": 71
+        }
+    ],
+    "redirects": [
+        {
+            "value": "google.com",
+            "count": 629989
+        }
+    ],
+    "backlinks": [
+        {
+            "value": "google.com",
+            "count": 17314912
+        }
+    ],
+    "asn": [
+        {
+            "value": "AS15169",
+            "count": 16219992
+        }
+    ]
+}
+</code></pre>
+                </div></div><div class="border bg-white rounded mb-12">
+                <h3 class="px-6 py-4 text-primary border-b text-xl" id="apifulldomain"><strong>/api/full/:domain</strong></h3>
+                <div class="px-6 py-4"><h5><strong>Description</strong></h5>
+                <p>A single endpoint that includes the data from <a href="#apiwebdomain">/api/web</a>, <a href="#apidnsdomain">/api/dns</a>, <a href="#apirelateddomain">/api/related</a> and <a href="ipinfo.io">IPinfo</a>.</p>
+                <h5 class="mt-4" id="errors"><strong>Errors</strong></h5>
+                <p>Returns the HTTP 404 status code as well as an error message in JSON format if the domain is invalid and/or has no data associated with it.</p>
+                <h5 class="mt-4" id="examples"><strong>Examples</strong></h5>
+                <h6 class="mt-2"><em>Good</em></h6>
+<pre class="rounded"><code class="language-bash">curl "https://host.io/api/full/google.com?token=$TOKEN"
+{
+    "domain": "google.com",
+    "dns": {
+        "domain": "google.com",
+        "a": [
+            "172.217.14.238"
+        ],
+        "aaaa": [
+            "2607:f8b0:400a:803::200e"
+        ],
+        "mx": [
+            "10 aspmx.l.google.com.",
+            "20 alt1.aspmx.l.google.com.",
+            "30 alt2.aspmx.l.google.com.",
+            "40 alt3.aspmx.l.google.com.",
+            "50 alt4.aspmx.l.google.com."
+        ],
+        "ns": [
+            "ns1.google.com.",
+            "ns2.google.com.",
+            "ns3.google.com.",
+            "ns4.google.com."
+        ]
+    },
+    "ipinfo": {
+        "216.58.193.68": {
+            "city": "Seattle",
+            "region": "Washington",
+            "country": "US",
+            "loc": "47.6062,-122.3321",
+            "postal": "98111",
+            "timezone": "America/Los_Angeles",
+            "asn": {
+                "asn": "AS15169",
+                "name": "Google LLC",
+                "domain": "google.com",
+                "route": "216.58.192.0/22",
+                "type": "business"
+            }
+        },
+        "2607:f8b0:400a:803::200e": {
+            "city": "Mountain View",
+            "region": "California",
+            "country": "US",
+            "loc": "37.4056,-122.0775",
+            "postal": "94043",
+            "timezone": "America/Los_Angeles",
+            "asn": {
+                "asn": "AS15169",
+                "name": "Google LLC",
+                "domain": "google.com",
+                "route": "2607:f8b0:400a::/48",
+                "type": "business"
+            }
+        }
+    },
+    "web": {
+        "domain": "google.com",
+        "rank": 1,
+        "url": "https://www.google.com/?gws_rd=ssl",
+        "ip": "216.58.193.68",
+        "date": "2019-11-25T18:58:31.543Z",
+        "length": 205694,
+        "server": "gws",
+        "encoding": "utf8",
+        "title": "Google",
+        "description": "Search the world's information, including webpages, images, videos and more. Google has many special features to help you find exactly what you're looking for.",
+        "links": [
+            "about.google"
+        ]
+    },
+    "related": {
+        "ip": [
+            {
+                "value": "172.217.14.238",
+                "count": 293
+            },
+            {
+                "value": "216.58.193.68",
+                "count": 71
+            }
+        ],
+        "redirects": [
+            {
+                "value": "google.com",
+                "count": 629989
+            }
+        ],
+        "asn": [
+            {
+                "value": "AS15169",
+                "count": 16219992
+            }
+        ],
+        "backlinks": [
+            {
+                "value": "google.com",
+                "count": 17314912
+            }
+        ],
+        "mx": [
+            {
+                "value": "google.com",
+                "count": 11624298
+            }
+        ],
+        "ns": [
+            {
+                "value": "google.com",
+                "count": 12221
+            }
+        ]
+    }
+}
+</code></pre>
+                <h6 id="_bad_" class="mt-4"><em>Bad</em></h6>
+<pre class="rounded"><code class="language-bash">curl "https://host.io/api/domains/full/example.example?token=$TOKEN"
+{
+    "error": "No details found for example.example"
+}
+</code></pre>
+                </div></div><div class="border bg-white rounded mb-12">
+                <h3 class="px-6 py-4 text-primary border-b text-xl" id="apidomainsfieldvalue"><strong>/api/domains/:field/:value</strong></h3>
+                <div class="p-4"><p>Get all domains associated with <code>:field</code>, and a count of the total.
+                    The <code>:value</code> should be according to the <code>:field</code> and not necessarily a domain.  
+                    Supported fields:</p>
+                <table class="mt-4">
+                    <thead>
+                        <tr>
+                            <th class="border p-2">Field</th>
+                            <th class="border p-2">Descr</th>
+                            <th class="border p-2">Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="border p-2"><code>ip</code></td>
+                            <td class="border p-2">IP address (v4 or v6)</td>
+                            <td class="border p-2">8.8.8.8</td>
+                        </tr>
+                        <tr>
+                            <td class="border p-2"><code>ns</code></td>
+                            <td class="border p-2">DNS Nameserver (NS) record (root domain)</td>
+                            <td class="border p-2">google.com</td>
+                        </tr>
+                        <tr>
+                            <td class="border p-2"><code>mx</code></td>
+                            <td class="border p-2">DNS Mailserver (MX) record (root domain)</td>
+                            <td class="border p-2">google.com</td>
+                        </tr>
+                        <tr>
+                            <td class="border p-2"><code>asn</code></td>
+                            <td class="border p-2">ASN</td>
+                            <td class="border p-2">AS15169</td>
+                        </tr>
+                        <tr>
+                            <td class="border p-2"><code>backlinks</code></td>
+                            <td class="border p-2">Domains that include a link to the domain on their homepage</td>
+                            <td class="border p-2">google.com</td>
+                        </tr>
+                        <tr>
+                            <td class="border p-2"><code>redirects</code></td>
+                            <td class="border p-2">Domains that redirect to the domain from their homepage</td>
+                            <td class="border p-2">google.com</td>
+                        </tr>
+                        <tr>
+                            <td class="border p-2"><code>adsense</code></td>
+                            <td class="border p-2">Domains that include an adsense ID on their homepage</td>
+                            <td class="border p-2">pub-1556223355139109</td>
+                        </tr>
+                        <tr>
+                            <td class="border p-2"><code>facebook</code></td>
+                            <td class="border p-2">
+                                Domains linking to the Facebook social media handle on their homepage
+                            </td>
+                            <td class="border p-2">spacenewsx</td>
+                        </tr>
+                        <tr>
+                            <td class="border p-2"><code>twitter</code></td>
+                            <td class="border p-2">
+                                Domains linking to the Twitter social media handle on their homepage
+                            </td>
+                            <td class="border p-2">elonmusk</td>
+                        </tr>
+                        <tr>
+                            <td class="border p-2"><code>instagram</code></td>
+                            <td class="border p-2">
+                                Domains linking to the Instagram social media handle on their homepage
+                            </td>
+                            <td class="border p-2">chadwickboseman</td>
+                        </tr>
+                        <tr>
+                            <td class="border p-2"><code>gtm</code></td>
+                            <td class="border p-2">
+                                Domains having the google tag manager ID on their homepage
+                            </td>
+                            <td class="border p-2">GTM-544JFM</td>
+                        </tr>
+                        <tr>
+                            <td class="border p-2"><code>googleanalytics</code></td>
+                            <td class="border p-2">Domains that include a googleanalytics ID on their homepage</td>
+                            <td class="border p-2">UA-55552418</td>
+                        </tr>
+                        <tr>
+                            <td class="border p-2"><code>email</code></td>
+                            <td class="border p-2">Domains that include an email address on their homepage</td>
+                            <td class="border p-2">admin@google.com</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="mt-4">Results are limited to a maxmimum of 1000 per page, and a maximum of 10 million total results.</p>
+                <p>Also see <a href="#apirelateddomain"><code>/api/related/:domain</code></a>, which returns the count of related domains and the associated values for a domain.</p>
+                <h5 class="mt-4" id="parameters"><strong>Parameters</strong></h5>
+                <ul>
+                    <li><code>limit</code>: Must be one of 0, 1, 5, 10, 25, 100, 250, or 1000. Default is 25.</li>
+                    <li><code>page</code>: The page of data to view, 0-indexed. Default is 0. Pagination takes into account the <code>limit</code>.</li>
+                </ul>
+                <h5 class="mt-4" id="errors"><strong>Errors</strong></h5>
+                <p>Returns the HTTP 404 status code as well as an error message in JSON format if the domain is invalid and/or has no data associated with it, or if the limit/page combination is out-of-bounds.</p>
+                <h5 class="mt-4" id="examples"><strong>Examples</strong></h5>
+                <h6 class="mt-2"><em>Good</em></h6>
+                <pre class="rounded"><code class="language-bash">curl "https://host.io/api/domains/googleanalytics/UA-61330992?limit=5&token=$TOKEN" 
+{
+    "googleanalytics": "UA-61330992",
+    "total": 10,
+    "domains": [
+        "minilex.fi",
+        "minilex.at",
+        "minilex.sk",
+        "minilex.se",
+        "minilex.be"
+    ]
+}</code></pre>
+
+
+<pre class="rounded"><code class="language-bash">curl "https://host.io/api/domains/email/office@ssa-vending.com?limit=5&token=$TOKEN"
+{
+    "email": "office@ssa-vending.com",
+    "total": 3,
+    "domains": [
+        "ssa-vending.com",
+        "schank-service.com",
+        "ssa-softdrinks.com"
+    ]
+}
+</code></pre>
+
+<pre class="rounded"><code class="language-bash">curl "https://host.io/api/domains/ns/google.com?limit=5&page=5&token=$TOKEN"
+{
+    "ns": "google.com",
+    "page": 5,
+    "total": 12221,
+    "domains": [
+        "google.com.eg",
+        "google.co.th",
+        "google.nl",
+        "google.co.ve",
+        "google.co.za"
+    ]
+}
+</code></pre>
+
+
+<pre class="rounded"><code class="language-bash">curl "https://host.io/api/domains/twitter/elonmusk?limit=5&token=$TOKEN"
+{
+    "twitter": "elonmusk",
+    "total": 192,
+    "domains": [
+        "muskx.online",
+        "beyondgoodandevil.org",
+        "enn0.de",
+        "numerocivico.com",
+        "jadeedarabia.com"
+    ]
+}
+</code></pre>
+    
+
+                <h6 id="_bad-invalid-ua_" class="mt-8"><em>Bad (invalid UA)</em></h6>
+<pre class="rounded"><code class="language-bash">curl "https://host.io/api/domains/googleanalytics/UA-FOO?token=$TOKEN"
+{
+    "error": "No details on 'googleanalytics' found for UA-FOO"
+}
+</code></pre>
+                <h6 id="_bad-invalid-limitpage-combo_" class="mt-8"><em>Bad (invalid limit/page combo)</em></h6>
+<pre class="rounded"><code class="language-bash">curl "https://host.io/api/domains/googleanalytics/UA-61330992?limit=250&amp;page=100&amp;token=$TOKEN"
+{
+    "error": "No details on 'googleanalytics' found for UA-61330992"
+}
+</code></pre>
+                <h6 id="_bad-invalid-value_" class="mt-8"><em>Bad (invalid :value)</em></h6>
+<pre class="rounded"><code class="language-bash">curl "https://host.io/api/domains/gtm/google.com?token=$TOKEN"
+{
+    "error": "No details on 'gtm' found for google.com"
+}
+</code></pre>
+            </div>
+        </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <footer class="py-12 border-gray-200 bg-gray-100">
+    <div class="max-w-5xl mx-auto flex justify-between flex-col lg:flex-row px-4">
+        <div class="w-1/3">
+            <a href="/">
+                <svg class="w-24 h-8">
+                    <use xlink:href="#logo-white" />
+                </svg>
+            </a>
+        </div>
+        <div class="flex justify-between text-gray-600 mt-4 lg:mt-0 text-sm flex-1 sm:flex-row flex-col">
+            <a href="/about">About</a>
+            <a href="/docs">Documentation</a>
+            <a href="/rankings">Rankings</a>
+            <a href="/contact">Contact</a>
+            <a href="/terms">Terms</a>
+            <a href="/privacy">Privacy</a>
+            <a href="https://twitter.com/host">Twitter</a>
+        </div>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
+    <script src="https://cdn.host.io/static/assets/gumshoe.js"></script>
+
+    
+        <script>
+            var spy = new Gumshoe('#nav a');
+        </script>
+    
+</body>
+
+</html>
